@@ -6,7 +6,7 @@
 #    By: arepsa <arepsa@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/27 11:06:34 by arepsa            #+#    #+#              #
-#    Updated: 2023/12/28 16:09:43 by arepsa           ###   ########.fr        #
+#    Updated: 2024/01/02 14:01:03 by arepsa           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,7 +36,7 @@ OBJ_DIR		= objs
 
 # /------------- FILES ------------- #
 NAME 		= philo
-FILES 		= main utils init_check print_stuff
+FILES 		= main utils init_check prog_init print_stuff
 SRC 		= $(addprefix $(SRC_DIR)/, $(addsuffix .c, $(FILES)))
 OBJ 		= $(addprefix $(OBJ_DIR)/, $(addsuffix .o, $(FILES)))
 

@@ -6,7 +6,7 @@
 /*   By: arepsa <arepsa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/27 11:04:06 by arepsa            #+#    #+#             */
-/*   Updated: 2023/12/28 15:46:44 by arepsa           ###   ########.fr       */
+/*   Updated: 2024/01/02 14:00:34 by arepsa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,18 @@ int    ft_error(char *str)
 bool    ft_isspace(char c)
 {
     return((c >= 9 && c <= 13) || c == 32);
+}
+void	*safe_malloc(size_t bytes)
+{
+	void	*result;
+	
+	result = malloc(bytes);
+	if (!result)
+	{
+		return(NULL);
+	}
+	return (result);
+		
 }
 
 /* atol only for positive nbr */

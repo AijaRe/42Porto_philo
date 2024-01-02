@@ -23,7 +23,6 @@ void    *roll_dice() {
     return ((void *)result);
 }
     
-
 int     main(void) {
     int *result[THREAD_NUM];
     pthread_t thread[THREAD_NUM];
