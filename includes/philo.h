@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arepsa <arepsa@student.42.fr>              +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/26 14:33:27 by arepsa            #+#    #+#             */
-/*   Updated: 2024/01/02 15:06:22 by arepsa           ###   ########.fr       */
+/*   Updated: 2024/01/02 18:07:32 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <limits.h>
 # include <stdlib.h>
 # include <pthread.h>
+# include <sys/time.h>
 
 typedef struct s_prog t_prog;
 
@@ -54,7 +55,7 @@ typedef struct s_prog
    t_input  input;
    t_philo	*philos;
    t_fork	*forks;
-   long		start_prog;
+   long		start_time;
    bool		end_prog;
    bool		all_threads_ready;
 }				t_prog;

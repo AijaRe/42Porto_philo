@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: arepsa <arepsa@student.42.fr>              +#+  +:+       +#+         #
+#    By: marvin <marvin@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/27 11:06:34 by arepsa            #+#    #+#              #
-#    Updated: 2024/01/02 14:01:03 by arepsa           ###   ########.fr        #
+#    Updated: 2024/01/02 17:54:13 by marvin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ RM = rm -rf
 
 # ------------- FLAGS ------------- #
 CFLAGS 	= -Wall -Wextra -Werror -g
-TH_FLAG = #-pthread -fsanitize=thread
+TH_FLAG = -pthread -fsanitize=thread
 MK_FLAG = --no-print-directory
 
 # -------------- PATHS -------------- #

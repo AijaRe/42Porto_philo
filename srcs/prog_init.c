@@ -3,14 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   prog_init.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arepsa <arepsa@student.42.fr>              +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 13:52:16 by arepsa            #+#    #+#             */
-/*   Updated: 2024/01/02 14:47:26 by arepsa           ###   ########.fr       */
+/*   Updated: 2024/01/02 18:09:51 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
+
+/* 
+** The current time is expressed in elapsed seconds and microseconds 
+** since 00:00:00, January 1, 1970 (Unix Epoch).
+** On success, the gettimeofday() returns 0, failure -1
+*/
+long	get_time(void)
+{
+	struct timeval	time;
+
+	if (gettimeofday(&time, NULL) == -1)
+		write(2, "gettimeofday error\n", 20);
+	return (time.tv_sec * 1000 + time.tv_usec / 1000);
+}
 
 void    init_forks(t_prog *prog)
 {
@@ -65,13 +79,11 @@ void    init_philos(t_prog *prog)
 
 void    prog_init(t_prog *prog)
 {
-    int i;
-
-    i = 0;
     prog->end_prog = false;
     prog->all_threads_ready = false;
     prog->philos = safe_malloc(prog->input.nbr_philos * sizeof(t_philo));
     prog->forks = safe_malloc(prog->input.nbr_philos * sizeof(t_fork));
     init_forks(prog);
     init_philos(prog);
+    prog->start_time = get_time();
 }

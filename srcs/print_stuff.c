@@ -17,5 +17,6 @@ void    print_philo(t_philo *philo)
     //pthread_t	thread_id;
     printf("last meal time: %ld\n", philo->last_meal_time);
     printf("meal count: %d\n", philo->meal_count);
+    printf("start time: %ld\n", philo->prog->start_time);
     //printf("mutex lock: %d\n", philo->philo_mtx.__lock);
 }
