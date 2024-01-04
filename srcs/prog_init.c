@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 13:52:16 by arepsa            #+#    #+#             */
-/*   Updated: 2024/01/02 18:09:51 by marvin           ###   ########.fr       */
+/*   Updated: 2024/01/04 21:25:26 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,5 +85,4 @@ void    prog_init(t_prog *prog)
     prog->forks = safe_malloc(prog->input.nbr_philos * sizeof(t_fork));
     init_forks(prog);
     init_philos(prog);
-    prog->start_time = get_time();
 }
