@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: arepsa <arepsa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/26 14:33:27 by arepsa            #+#    #+#             */
-/*   Updated: 2024/01/02 18:07:32 by marvin           ###   ########.fr       */
+/*   Updated: 2024/01/05 19:11:21 by arepsa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,10 +58,17 @@ typedef struct s_prog
    long		start_time;
    bool		end_prog;
    bool		all_threads_ready;
+   pthread_mutex_t prog_mtx;
 }				t_prog;
 
 int check_init_errors(int argc, char **argv);
+
+/* prog_init */
+long	get_time(void);
 void    prog_init(t_prog *prog);
+
+/* action */
+void  *start_dinner(t_prog *prog);
 
 /* utils */
 int     ft_strlen(char *str);

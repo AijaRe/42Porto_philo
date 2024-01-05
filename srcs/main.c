@@ -6,7 +6,7 @@
 /*   By: arepsa <arepsa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/26 14:30:44 by arepsa            #+#    #+#             */
-/*   Updated: 2024/01/02 14:49:13 by arepsa           ###   ########.fr       */
+/*   Updated: 2024/01/05 19:54:10 by arepsa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,8 @@ int main(int argc, char **argv)
 	if (parse_input(&prog.input, argv) == 1)
         return (1);
     prog_init(&prog);
+    start_dinner(&prog);
 	print_s_input(&prog.input);
-    print_philo(&prog.philos[0]);
+    //print_philo(&prog.philos[0]);
     return (0);
 }

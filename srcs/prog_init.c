@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prog_init.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: arepsa <arepsa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 13:52:16 by arepsa            #+#    #+#             */
-/*   Updated: 2024/01/04 21:25:26 by marvin           ###   ########.fr       */
+/*   Updated: 2024/01/05 20:01:12 by arepsa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 ** The current time is expressed in elapsed seconds and microseconds 
 ** since 00:00:00, January 1, 1970 (Unix Epoch).
 ** On success, the gettimeofday() returns 0, failure -1
+** Returns time in miliseconds
 */
 long	get_time(void)
 {
@@ -81,6 +82,7 @@ void    prog_init(t_prog *prog)
 {
     prog->end_prog = false;
     prog->all_threads_ready = false;
+    pthread_mutex_init(&prog->prog_mtx, NULL);
     prog->philos = safe_malloc(prog->input.nbr_philos * sizeof(t_philo));
     prog->forks = safe_malloc(prog->input.nbr_philos * sizeof(t_fork));
     init_forks(prog);
