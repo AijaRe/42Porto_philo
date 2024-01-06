@@ -12,8 +12,8 @@ void    print_s_input(t_input *input)
 void    print_philo(t_philo *philo)
 {
     printf("philo id: %d\n", philo->philo_id);
-    printf("1st fork id: %d\n", philo->fork_1st.fork_id);
-    printf("2nd fork id: %d\n", philo->fork_2nd.fork_id);
+    printf("1st fork id: %d\n", philo->fork_1st->fork_id);
+    printf("2nd fork id: %d\n", philo->fork_2nd->fork_id);
     //pthread_t	thread_id;
     printf("last meal time: %ld\n", philo->last_meal_time);
     printf("meal count: %d\n", philo->meal_count);
