@@ -54,19 +54,52 @@ void  *lone_diner(t_prog *prog)
 	return (NULL);
 }
 
-/* void dinner_time(t_philo *philo)
+/* lock the forks
+** update meal time -> restart time_to_die counter
+** print the status and eat for estimated time
+** update meal counter and check if full
+** unlock the forks
+ */
+void ft_eat(t_philo *philo)
 {
+	pthread_mutex_lock(&philo->fork_1st->fork_mtx);
+	print_msg(philo, HAS_TAKEN_A_FORK);
+	pthread_mutex_lock(&philo->fork_2nd->fork_mtx);
+	print_msg(philo, HAS_TAKEN_A_FORK);
+	//pthread_mutex_lock(&philo->philo_mtx);
+	philo->last_meal_time = get_time();
+	philo->meal_count++;
+	//pthread_mutex_unlock(&philo->philo_mtx);
+	print_msg(philo, IS_EATING);
+	usleep(philo->prog->input.time_to_eat);
+	if (philo->prog->input.nbr_meals != -1 && philo->meal_count == philo->prog->input.nbr_meals)
+	{
+		//pthread_mutex_lock(&philo->philo_mtx);
+		philo->full = true;
+		//pthread_mutex_unlock(&philo->philo_mtx);
+	}
+	pthread_mutex_unlock(&philo->fork_1st->fork_mtx);
+	pthread_mutex_unlock(&philo->fork_2nd->fork_mtx);
+}
+
+/* void dinner_time(void *philo_data)
+{
+	t_philo *philo;
+	philo = (t_philo *)philo_data;
+
 	sync_threads(philo->prog);
 	while (!dinner_finished(philo->prog))
 	{
 		if (prog->all_philos_full)
 			break;
-		eat()
-		sleep()
-		think()
+		ft_eat(philo);
+		print_msg(philo, SLEEPING);
+		usleep(philo->prog->input.time_to_sleep);
+		ft_think()
 	}
 
 } */
+
 
 /*  
 ** Thread create args: thread, thread attributes, function, function argument

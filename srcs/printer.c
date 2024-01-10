@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   printer.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arepsa <arepsa@student.42.fr>              +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/06 17:28:20 by arepsa            #+#    #+#             */
-/*   Updated: 2024/01/06 18:05:05 by arepsa           ###   ########.fr       */
+/*   Updated: 2024/01/10 20:42:27 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 ** timestamp_in_ms X died
 */
 
-void    print_msg(t_msg msg, t_philo *philo)
+void    print_msg(t_philo *philo, t_msg msg)
 {
     long timestamp;
 
