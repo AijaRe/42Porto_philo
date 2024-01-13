@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arepsa <arepsa@student.42.fr>              +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/26 14:30:44 by arepsa            #+#    #+#             */
-/*   Updated: 2024/01/06 17:07:25 by arepsa           ###   ########.fr       */
+/*   Updated: 2024/01/13 17:16:41 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,11 +50,11 @@ int main(int argc, char **argv)
 	if (parse_input(&prog.input, argv) == 1)
         return (1);
     prog_init(&prog);
-    //start_dinner(&prog);
-	print_s_input(&prog.input);
+    start_dinner(&prog);
+	/* print_s_input(&prog.input);
     print_philo(&prog.philos[0]);
     print_philo(&prog.philos[1]);
     print_philo(&prog.philos[2]);
-    print_philo(&prog.philos[3]);
+    print_philo(&prog.philos[3]); */
     return (0);
 }

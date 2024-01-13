@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/06 17:28:20 by arepsa            #+#    #+#             */
-/*   Updated: 2024/01/10 20:42:27 by marvin           ###   ########.fr       */
+/*   Updated: 2024/01/13 17:43:03 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void    print_msg(t_philo *philo, t_msg msg)
 {
     long timestamp;
 
-    if (get_full_status(philo->full))
+    if (philo_is_full(philo))
         return ;
     timestamp = get_time() - philo->prog->start_time;
     pthread_mutex_lock(&philo->prog->print_mtx);
@@ -33,7 +33,7 @@ void    print_msg(t_philo *philo, t_msg msg)
         if (msg == HAS_TAKEN_A_FORK)
             printf("%ld %d has taken a fork\n", timestamp, philo->philo_id);
         else if (msg == IS_EATING)
-            printf("%ld %d is eating\n", timestamp, philo->philo_id);
+            printf(GREEN"%ld %d is eating\n"RESET, timestamp, philo->philo_id);
         else if (msg == IS_SLEEPING)
             printf("%ld %d is sleeping\n", timestamp, philo->philo_id);
         else if (msg == IS_THINKING)

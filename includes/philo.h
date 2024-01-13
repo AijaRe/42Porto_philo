@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arepsa <arepsa@student.42.fr>              +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/26 14:33:27 by arepsa            #+#    #+#             */
-/*   Updated: 2024/01/06 18:10:01 by arepsa           ###   ########.fr       */
+/*   Updated: 2024/01/13 18:59:03 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ typedef struct s_fork
 
 typedef struct s_philo
 {
-	pthread_t	thread_id;
+	pthread_t   philo_th;
 	int			philo_id;
 	t_fork		*fork_1st;
 	t_fork		*fork_2nd;
@@ -73,6 +73,7 @@ typedef struct s_prog
    bool		end_prog;
    bool     all_philos_full;
    bool		all_threads_ready;
+   pthread_t    *monitor_th;
    pthread_mutex_t prog_mtx;
    pthread_mutex_t print_mtx;
 }				t_prog;
@@ -85,6 +86,10 @@ void    prog_init(t_prog *prog);
 
 /* action */
 void  *start_dinner(t_prog *prog);
+bool	dinner_finished(t_prog *prog);
+
+/* printer */
+void    print_msg(t_philo *philo, t_msg msg);
 
 /* utils */
 int     ft_strlen(char *str);
@@ -94,7 +99,8 @@ long	ft_atol(char *str);
 void	*safe_malloc(size_t bytes);
 
 /* utils_mtx */
-bool get_full_status(t_philo *philo);
+bool philo_is_full(t_philo *philo);
+bool all_philos_are_full(t_prog *prog);
 
 /* print_stuff */
 void    print_s_input(t_input *input);
