@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/26 14:33:27 by arepsa            #+#    #+#             */
-/*   Updated: 2024/01/14 11:48:06 by marvin           ###   ########.fr       */
+/*   Updated: 2024/01/14 17:53:55 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,13 @@ void	*ft_monitor(void *prog_data);
 /* printer */
 void    print_msg(t_philo *philo, t_msg msg);
 
+/* clean */
+void	clean_all(t_prog *prog);
+
+/* time */
+long	get_time(void);
+int     ft_usleep(int time_usec);
+
 /* utils */
 int     ft_strlen(char *str);
 bool    ft_isspace(char c);
@@ -105,6 +112,7 @@ long	ft_atol(char *str);
 void	*safe_malloc(size_t bytes);
 
 /* utils_mtx */
+bool    get_all_threads_ready(t_prog *prog);
 bool get_philo_is_full(t_philo *philo);
 bool get_all_philos_are_full(t_prog *prog);
 void    set_last_meal_time(t_philo *philo);

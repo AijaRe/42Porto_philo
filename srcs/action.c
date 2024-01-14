@@ -23,36 +23,48 @@ bool	dinner_finished(t_prog *prog)
 	return (value);
 }
 
-/* Check if all philosophers are full */
-bool all_philos_full(t_prog *prog) {
+bool	all_philos_full(t_prog *prog)
+{
 	int i;
 
 	i = 0;
-	while (i < prog->input.nbr_philos) {
+	while (i < prog->input.nbr_philos)
+	{
 		pthread_mutex_lock(&prog->philos[i].philo_mtx);
-		if (!prog->philos[i].full) {
+		if (!prog->philos[i].full)
+		{
 			pthread_mutex_unlock(&prog->philos[i].philo_mtx);
-			return false;
+			return (false);
 		}
 		pthread_mutex_unlock(&prog->philos[i].philo_mtx);
 		i++;
 	}
-    return true;
+	return (true);
+}
+
+/* Check if all philosophers are full */
+void check_if_all_full(t_prog *prog) 
+{
+	while (!dinner_finished(prog))
+	{
+		if (all_philos_full(prog))
+		{
+			pthread_mutex_lock(&prog->print_mtx);
+			printf(PINK"All philos are full!\U0001F44C\n"RESET);
+			pthread_mutex_unlock(&prog->print_mtx);
+			pthread_mutex_lock(&prog->prog_mtx);
+			prog->end_prog = true;
+			pthread_mutex_unlock(&prog->prog_mtx);
+			break ;
+		}
+	}	
 }
 
 /* wait until threads are created */
 void	sync_threads(t_prog *prog)
 {
-	bool result;
-
-	while (1)
-	{
-		pthread_mutex_lock(&prog->prog_mtx);
-		result = prog->all_threads_ready;
-		pthread_mutex_unlock(&prog->prog_mtx);
-		if (result == true)
-			break;
-	}
+	while (!get_all_threads_ready(prog))
+		;
 }
 
 void  *lone_diner(t_prog *prog)
@@ -110,7 +122,23 @@ void ft_eat(t_philo *philo)
 	pthread_mutex_unlock(&philo->fork_2nd->fork_mtx);
 }
 
-void	*dinner_time(void *philo_data)
+void	dinner_sequence(t_philo *philo)
+{
+	while (!dinner_finished(philo->prog))
+	{
+		if (get_philo_is_full(philo))
+			break ;
+		ft_eat(philo);
+		ft_sleep(philo);
+		ft_think(philo);
+	}
+}
+
+/* 
+** small delay for even philos to avoid deadlocks
+** update ready thread number to start the monitor
+*/
+void	*dinner_prep(void *philo_data)
 {
 	t_philo *philo;
 	philo = (t_philo *)philo_data;
@@ -118,20 +146,9 @@ void	*dinner_time(void *philo_data)
 	sync_threads(philo->prog);
 	set_last_meal_time(philo);
 	increase_nbr_ready_threads(philo->prog);
-	while (!dinner_finished(philo->prog))
-	{
-		 if (all_philos_full(philo->prog)) {
-            pthread_mutex_lock(&philo->prog->prog_mtx);
-            philo->prog->all_philos_full = true;
-			philo->prog->end_prog = true;
-            pthread_mutex_unlock(&philo->prog->prog_mtx);
-			printf(BLUE"All philos are full!\n"RESET);
-            break;
-        }
-		ft_eat(philo);
-		ft_sleep(philo);
-		ft_think(philo);
-	}
+	if(philo->philo_id % 2 == 0)
+		usleep(philo->prog->input.time_to_eat / 2);
+	dinner_sequence(philo);
 	return (NULL);
 }
 
@@ -153,15 +170,17 @@ void  *start_dinner(t_prog *prog)
 	{
 		while (i < prog->input.nbr_philos)
 		{
-			pthread_create(&prog->philos[i].philo_th, NULL, dinner_time, &prog->philos[i]);
+			pthread_create(&prog->philos[i].philo_th, NULL, dinner_prep, &prog->philos[i]);
 			i++;
 		}
 	}
 	pthread_create(&prog->monitor_th, NULL, ft_monitor, prog);
-	//pthread_mutex_lock(&prog->prog_mtx);
-	prog->all_threads_ready = true;
-	//pthread_mutex_unlock(&prog->prog_mtx);
+	pthread_mutex_lock(&prog->prog_mtx);
 	prog->start_time = get_time();
+	prog->all_threads_ready = true;
+	pthread_mutex_unlock(&prog->prog_mtx);
+	if (prog->input.nbr_meals != -1)
+		check_if_all_full(prog);
 	i = 0;
 	while (i < prog->input.nbr_philos)
 	{

@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/06 17:28:20 by arepsa            #+#    #+#             */
-/*   Updated: 2024/01/14 11:44:01 by marvin           ###   ########.fr       */
+/*   Updated: 2024/01/14 16:41:35 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,3 +43,4 @@ void    print_msg(t_philo *philo, t_msg msg)
         printf(RED"%ld %d died\n"RESET, timestamp, philo->philo_id);
     pthread_mutex_unlock(&philo->prog->print_mtx);
 }
+

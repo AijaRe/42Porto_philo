@@ -6,26 +6,11 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 13:52:16 by arepsa            #+#    #+#             */
-/*   Updated: 2024/01/13 20:27:27 by marvin           ###   ########.fr       */
+/*   Updated: 2024/01/14 16:40:52 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
-
-/* 
-** The current time is expressed in elapsed seconds and microseconds 
-** since 00:00:00, January 1, 1970 (Unix Epoch).
-** On success, the gettimeofday() returns 0, failure -1
-** Returns time in miliseconds
-*/
-long	get_time(void)
-{
-	struct timeval	time;
-
-	if (gettimeofday(&time, NULL) == -1)
-		write(2, "gettimeofday error\n", 20);
-	return (time.tv_sec * 1000 + time.tv_usec / 1000);
-}
 
 void    init_forks(t_prog *prog)
 {
@@ -84,6 +69,7 @@ void    prog_init(t_prog *prog)
     prog->end_prog = false;
     prog->all_threads_ready = false;
     prog->all_philos_full = false;
+    prog->nbr_ready_threads = 0;
     pthread_mutex_init(&prog->prog_mtx, NULL);
     pthread_mutex_init(&prog->print_mtx, NULL);
     prog->philos = safe_malloc(prog->input.nbr_philos * sizeof(t_philo));

@@ -16,7 +16,7 @@
 ** wait for all threads to be ready before starting monitoring
 ** otherwise last meal time is not set yet and they die
 */
-bool	get_all_threads_ready(pthread_mutex_t *prog_mtx, int *nbr_threads,
+bool	get_all_threads_running(pthread_mutex_t *prog_mtx, int *nbr_threads,
 		int nbr_philos)
 {
 	bool	value;
@@ -61,7 +61,7 @@ void	*ft_monitor(void *prog_data)
 
 	prog = (t_prog *)prog_data;
 	
-	while (!get_all_threads_ready(&prog->prog_mtx,
+	while (!get_all_threads_running(&prog->prog_mtx,
 			&prog->nbr_ready_threads, prog->input.nbr_philos))
 		;
 	while (!dinner_finished(prog))

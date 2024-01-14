@@ -6,11 +6,21 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/06 18:05:33 by arepsa            #+#    #+#             */
-/*   Updated: 2024/01/14 11:41:06 by marvin           ###   ########.fr       */
+/*   Updated: 2024/01/14 17:59:59 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
+
+bool    get_all_threads_ready(t_prog *prog)
+{
+    bool    value;
+
+    pthread_mutex_lock(&prog->prog_mtx);
+    value = prog->all_threads_ready;
+    pthread_mutex_unlock(&prog->prog_mtx);
+    return (value);
+}
 
 bool get_philo_is_full(t_philo *philo)
 {

@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/26 14:30:44 by arepsa            #+#    #+#             */
-/*   Updated: 2024/01/14 11:09:05 by marvin           ###   ########.fr       */
+/*   Updated: 2024/01/14 16:17:08 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,8 @@ int main(int argc, char **argv)
         return (1);
     prog_init(&prog);
     start_dinner(&prog);
-	/* print_s_input(&prog.input);
+    clean_all(&prog);
+/* 	print_s_input(&prog.input);
     print_philo(&prog.philos[0]);
     print_philo(&prog.philos[1]);
     print_philo(&prog.philos[2]);

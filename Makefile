@@ -6,7 +6,7 @@
 #    By: marvin <marvin@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/27 11:06:34 by arepsa            #+#    #+#              #
-#    Updated: 2024/01/14 11:22:44 by marvin           ###   ########.fr        #
+#    Updated: 2024/01/14 18:01:36 by marvin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +37,7 @@ OBJ_DIR		= objs
 # /------------- FILES ------------- #
 NAME 		= philo
 FILES 		= main utils init_check prog_init debug_prints action utils_mtx \
-				printer monitor
+				printer monitor clean time
 SRC 		= $(addprefix $(SRC_DIR)/, $(addsuffix .c, $(FILES)))
 OBJ 		= $(addprefix $(OBJ_DIR)/, $(addsuffix .o, $(FILES)))
 
