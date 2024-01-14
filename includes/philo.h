@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/26 14:33:27 by arepsa            #+#    #+#             */
-/*   Updated: 2024/01/14 17:53:55 by marvin           ###   ########.fr       */
+/*   Updated: 2024/01/14 18:37:33 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ void	clean_all(t_prog *prog);
 
 /* time */
 long	get_time(void);
-int     ft_usleep(int time_usec);
+int     ft_usleep(long time_usec);
 
 /* utils */
 int     ft_strlen(char *str);

@@ -28,36 +28,12 @@ long	get_time(void)
 }
 
 // upgraded usleep
-int	ft_usleep(int usec)
+int	ft_usleep(long time_usec)
 {
-	int	start;
-
+	long	start;
+	
 	start = get_time();
-	while ((get_time() - start) < usec)
+	while ((get_time() - start) < (time_usec / 1000))
 		usleep(500);
 	return (0);
 }
-
-/* int		ft_usleep(t_prog *prog, int time_usec)
-{
-	int	start;
-	int	time_ms;
-
-	time_ms = time_usec / 1000;
-	start = get_time();
-	while ((get_time() - start) < time_ms)
-	{
-		pthread_mutex_lock(&prog->prog_mtx);
-		if (!dinner_finished(prog))
-		{
-			pthread_mutex_unlock(&prog->prog_mtx);
-			usleep(500);
-		}
-		else
-		{
-			pthread_mutex_unlock(&prog->prog_mtx);
-			break ;
-		}
-	}
-	return (0);
-} */

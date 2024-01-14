@@ -91,7 +91,7 @@ void	ft_think(t_philo *philo)
 void	ft_sleep(t_philo *philo)
 {
 	print_msg(philo, IS_SLEEPING);
-	usleep(philo->prog->input.time_to_sleep);
+	ft_usleep(philo->prog->input.time_to_sleep);
 }
 
 /* lock the forks
@@ -111,7 +111,7 @@ void ft_eat(t_philo *philo)
 	philo->meal_count++;
 	pthread_mutex_unlock(&philo->philo_mtx);
 	print_msg(philo, IS_EATING);
-	usleep(philo->prog->input.time_to_eat);
+	ft_usleep(philo->prog->input.time_to_eat);
 	if (philo->prog->input.nbr_meals != -1 && philo->meal_count == philo->prog->input.nbr_meals)
 	{
 		pthread_mutex_lock(&philo->philo_mtx);
