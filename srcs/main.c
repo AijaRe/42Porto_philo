@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/26 14:30:44 by arepsa            #+#    #+#             */
-/*   Updated: 2024/01/13 17:16:41 by marvin           ###   ########.fr       */
+/*   Updated: 2024/01/14 11:09:05 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@ int    parse_input(t_input *input, char **argv)
     input->time_to_die = ft_atol(argv[2]) * 1000;
     input->time_to_eat = ft_atol(argv[3]) * 1000;
     input->time_to_sleep = ft_atol(argv[4]) * 1000;
-    if ((input->time_to_die < 60000 || input->time_to_die > 2147483) ||
-        (input->time_to_eat < 60000 || input->time_to_eat > 2147483) ||
-        (input->time_to_sleep < 60000 || input->time_to_sleep > 2147483))
+    if ((input->time_to_die < 60000 || input->time_to_die > INT_MAX) ||
+        (input->time_to_eat < 60000 || input->time_to_eat > INT_MAX) ||
+        (input->time_to_sleep < 60000 || input->time_to_sleep > INT_MAX))
         return (ft_error("Invalid time input\n"));
     if (argv[5])
 	{

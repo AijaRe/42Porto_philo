@@ -23,6 +23,23 @@ bool	dinner_finished(t_prog *prog)
 	return (value);
 }
 
+/* Check if all philosophers are full */
+bool all_philos_full(t_prog *prog) {
+	int i;
+
+	i = 0;
+	while (i < prog->input.nbr_philos) {
+		pthread_mutex_lock(&prog->philos[i].philo_mtx);
+		if (!prog->philos[i].full) {
+			pthread_mutex_unlock(&prog->philos[i].philo_mtx);
+			return false;
+		}
+		pthread_mutex_unlock(&prog->philos[i].philo_mtx);
+		i++;
+	}
+    return true;
+}
+
 /* wait until threads are created */
 void	sync_threads(t_prog *prog)
 {
@@ -49,14 +66,20 @@ void  *lone_diner(t_prog *prog)
 	printf("%ld %d has taken a fork\n", time, prog->philos[0].philo_id);
 	usleep(prog->input.time_to_die);
 	time = (get_time() - start_time);
-	printf("%ld %d died\n", time, prog->philos[0].philo_id);
-	printf("Philo can't live alone...");
+	printf(RED"%ld %d died\n"RESET, time, prog->philos[0].philo_id);
+	printf(PINK"Philo can't live alone...\U0001F90D\n"RESET);
 	return (NULL);
 }
 
 void	ft_think(t_philo *philo)
 {
 	print_msg(philo, IS_THINKING);
+}
+
+void	ft_sleep(t_philo *philo)
+{
+	print_msg(philo, IS_SLEEPING);
+	usleep(philo->prog->input.time_to_sleep);
 }
 
 /* lock the forks
@@ -93,13 +116,20 @@ void	*dinner_time(void *philo_data)
 	philo = (t_philo *)philo_data;
 
 	sync_threads(philo->prog);
+	set_last_meal_time(philo);
+	increase_nbr_ready_threads(philo->prog);
 	while (!dinner_finished(philo->prog))
 	{
-		if (philo->prog->all_philos_full)
-			break;
+		 if (all_philos_full(philo->prog)) {
+            pthread_mutex_lock(&philo->prog->prog_mtx);
+            philo->prog->all_philos_full = true;
+			philo->prog->end_prog = true;
+            pthread_mutex_unlock(&philo->prog->prog_mtx);
+			printf(BLUE"All philos are full!\n"RESET);
+            break;
+        }
 		ft_eat(philo);
-		print_msg(philo, IS_SLEEPING);
-		usleep(philo->prog->input.time_to_sleep);
+		ft_sleep(philo);
 		ft_think(philo);
 	}
 	return (NULL);
@@ -115,7 +145,10 @@ void  *start_dinner(t_prog *prog)
 
 	i = 0;
 	if (prog->input.nbr_philos == 1)
+	{
 		lone_diner(prog);
+		return (NULL);
+	}
 	else
 	{
 		while (i < prog->input.nbr_philos)
@@ -124,7 +157,7 @@ void  *start_dinner(t_prog *prog)
 			i++;
 		}
 	}
-	//pthread_create(prog->monitor_th, NULL, ft_monitor, prog);
+	pthread_create(&prog->monitor_th, NULL, ft_monitor, prog);
 	//pthread_mutex_lock(&prog->prog_mtx);
 	prog->all_threads_ready = true;
 	//pthread_mutex_unlock(&prog->prog_mtx);
@@ -135,5 +168,6 @@ void  *start_dinner(t_prog *prog)
 		pthread_join(prog->philos[i].philo_th, NULL);
 		i++;
 	}
+	pthread_join(prog->monitor_th, NULL);
 	return (NULL);
 }

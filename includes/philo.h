@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/26 14:33:27 by arepsa            #+#    #+#             */
-/*   Updated: 2024/01/13 18:59:03 by marvin           ###   ########.fr       */
+/*   Updated: 2024/01/14 11:48:06 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@
 # define RESET  "\033[0m"
 # define RED    "\033[1;31m"
 # define GREEN  "\033[1;32m"
+# define PINK   "\033[1;35m"
+# define BLUE   "\033[1;34m"
 
 typedef struct s_prog t_prog;
 
@@ -73,7 +75,8 @@ typedef struct s_prog
    bool		end_prog;
    bool     all_philos_full;
    bool		all_threads_ready;
-   pthread_t    *monitor_th;
+   int      nbr_ready_threads;
+   pthread_t    monitor_th;
    pthread_mutex_t prog_mtx;
    pthread_mutex_t print_mtx;
 }				t_prog;
@@ -88,6 +91,9 @@ void    prog_init(t_prog *prog);
 void  *start_dinner(t_prog *prog);
 bool	dinner_finished(t_prog *prog);
 
+/* monitor */
+void	*ft_monitor(void *prog_data);
+
 /* printer */
 void    print_msg(t_philo *philo, t_msg msg);
 
@@ -99,8 +105,10 @@ long	ft_atol(char *str);
 void	*safe_malloc(size_t bytes);
 
 /* utils_mtx */
-bool philo_is_full(t_philo *philo);
-bool all_philos_are_full(t_prog *prog);
+bool get_philo_is_full(t_philo *philo);
+bool get_all_philos_are_full(t_prog *prog);
+void    set_last_meal_time(t_philo *philo);
+void    increase_nbr_ready_threads(t_prog *prog);
 
 /* print_stuff */
 void    print_s_input(t_input *input);

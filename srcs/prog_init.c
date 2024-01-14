@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prog_init.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arepsa <arepsa@student.42.fr>              +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 13:52:16 by arepsa            #+#    #+#             */
-/*   Updated: 2024/01/06 17:53:17 by arepsa           ###   ########.fr       */
+/*   Updated: 2024/01/13 20:27:27 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void    init_philos(t_prog *prog)
     i = 0;
     while (i < prog->input.nbr_philos)
     {
-        philo = prog->philos + i;
+        philo = &prog->philos[i];
         philo->philo_id = i + 1;
         philo->meal_count = 0;
         philo->last_meal_time = 0;

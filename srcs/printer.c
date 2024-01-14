@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/06 17:28:20 by arepsa            #+#    #+#             */
-/*   Updated: 2024/01/13 17:43:03 by marvin           ###   ########.fr       */
+/*   Updated: 2024/01/14 11:44:01 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void    print_msg(t_philo *philo, t_msg msg)
 {
     long timestamp;
 
-    if (philo_is_full(philo))
+    if (get_philo_is_full(philo))
         return ;
     timestamp = get_time() - philo->prog->start_time;
     pthread_mutex_lock(&philo->prog->print_mtx);
