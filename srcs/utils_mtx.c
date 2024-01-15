@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_mtx.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: arepsa <arepsa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/06 18:05:33 by arepsa            #+#    #+#             */
-/*   Updated: 2024/01/14 17:59:59 by marvin           ###   ########.fr       */
+/*   Updated: 2024/01/15 19:40:36 by arepsa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,4 +54,4 @@ void    increase_nbr_ready_threads(t_prog *prog)
     pthread_mutex_lock(&prog->prog_mtx);
     prog->nbr_ready_threads++;
     pthread_mutex_unlock(&prog->prog_mtx);
-}
+} 

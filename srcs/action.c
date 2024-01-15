@@ -67,20 +67,11 @@ void	sync_threads(t_prog *prog)
 		;
 }
 
-void  *lone_diner(t_prog *prog)
+void	lone_diner(t_philo	*philo)
 {
-	long	start_time;
-	long	time;
-
-	start_time = get_time();
-	time = 0;
-
-	printf("%ld %d has taken a fork\n", time, prog->philos[0].philo_id);
-	usleep(prog->input.time_to_die);
-	time = (get_time() - start_time);
-	printf(RED"%ld %d died\n"RESET, time, prog->philos[0].philo_id);
-	printf(PINK"Philo can't live alone...\U0001F90D\n"RESET);
-	return (NULL);
+	print_msg(philo, HAS_TAKEN_A_FORK);
+	while (!dinner_finished(philo->prog))
+		usleep(100);
 }
 
 void	ft_think(t_philo *philo)
@@ -146,6 +137,8 @@ void	*dinner_prep(void *philo_data)
 	sync_threads(philo->prog);
 	set_last_meal_time(philo);
 	increase_nbr_ready_threads(philo->prog);
+	if (philo->prog->input.nbr_philos == 1)
+		lone_diner(philo);
 	if(philo->philo_id % 2 == 0)
 		usleep(philo->prog->input.time_to_eat / 2);
 	dinner_sequence(philo);
@@ -161,24 +154,16 @@ void  *start_dinner(t_prog *prog)
 	int i;
 
 	i = 0;
-	if (prog->input.nbr_philos == 1)
-	{
-		lone_diner(prog);
-		return (NULL);
-	}
-	else
-	{
 		while (i < prog->input.nbr_philos)
 		{
 			pthread_create(&prog->philos[i].philo_th, NULL, dinner_prep, &prog->philos[i]);
 			i++;
 		}
-	}
-	pthread_create(&prog->monitor_th, NULL, ft_monitor, prog);
 	pthread_mutex_lock(&prog->prog_mtx);
 	prog->start_time = get_time();
 	prog->all_threads_ready = true;
 	pthread_mutex_unlock(&prog->prog_mtx);
+	pthread_create(&prog->monitor_th, NULL, ft_monitor, prog);
 	if (prog->input.nbr_meals != -1)
 		check_if_all_full(prog);
 	i = 0;

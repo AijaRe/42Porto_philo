@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: arepsa <arepsa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/26 14:30:44 by arepsa            #+#    #+#             */
-/*   Updated: 2024/01/14 16:17:08 by marvin           ###   ########.fr       */
+/*   Updated: 2024/01/15 17:53:56 by arepsa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int    parse_input(t_input *input, char **argv)
     if (argv[5])
 	{
         input->nbr_meals = ft_atol(argv[5]);
-    	if (argv[5] == 0)
+    	if (input->nbr_meals == 0)
 			return (ft_error("Invalid meal number\n"));
 	}
 	else
