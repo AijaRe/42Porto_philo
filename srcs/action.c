@@ -74,15 +74,31 @@ void	lone_diner(t_philo	*philo)
 		usleep(100);
 }
 
+
+/* 
+** Odd number forced to think
+** to ensure even distribution of eating times
+*/
 void	ft_think(t_philo *philo)
 {
-	print_msg(philo, IS_THINKING);
+	long	t_eat;
+	long	t_sleep;
+	long	t_think;
+
+	if (philo->prog->input.nbr_philos % 2 == 0)
+		return ;
+	t_eat = philo->prog->input.time_to_eat;
+	t_sleep = philo->prog->input.time_to_sleep;
+	t_think = (t_eat * 2) - t_sleep;
+	if (t_think < 0)
+		t_think = 0;
+	ft_usleep(t_think * 0.5);
 }
 
 void	ft_sleep(t_philo *philo)
 {
 	print_msg(philo, IS_SLEEPING);
-	usleep(philo->prog->input.time_to_sleep);
+	ft_usleep(philo->prog->input.time_to_sleep);
 }
 
 /* lock the forks
@@ -102,7 +118,7 @@ void ft_eat(t_philo *philo)
 	philo->meal_count++;
 	pthread_mutex_unlock(&philo->philo_mtx);
 	print_msg(philo, IS_EATING);
-	usleep(philo->prog->input.time_to_eat);
+	ft_usleep(philo->prog->input.time_to_eat);
 	if (philo->prog->input.nbr_meals != -1 && philo->meal_count == philo->prog->input.nbr_meals)
 	{
 		pthread_mutex_lock(&philo->philo_mtx);
@@ -126,7 +142,7 @@ void	dinner_sequence(t_philo *philo)
 }
 
 /* 
-** small delay for even philos to avoid deadlocks
+** small delay for even philos to give odds chance to grab forks
 ** update ready thread number to start the monitor
 */
 void	*dinner_prep(void *philo_data)

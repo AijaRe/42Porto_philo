@@ -6,7 +6,7 @@
 /*   By: arepsa <arepsa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/06 17:28:20 by arepsa            #+#    #+#             */
-/*   Updated: 2024/01/15 19:33:04 by arepsa           ###   ########.fr       */
+/*   Updated: 2024/01/18 18:00:13 by arepsa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void    print_msg(t_philo *philo, t_msg msg)
             printf("%ld %d is thinking\n", timestamp, philo->philo_id);
     }
     else if (msg == DIED)
-        printf(RED"%ld %d died\n"RESET, timestamp, philo->philo_id);
+        printf("%ld %d died\n", timestamp, philo->philo_id);
     pthread_mutex_unlock(&philo->prog->print_mtx);
 }
 
