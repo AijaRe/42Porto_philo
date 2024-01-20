@@ -33,6 +33,12 @@ void	ft_think(t_philo *philo)
 	ft_usleep(t_think * 0.5);
 }
 
+void	ft_sleep(t_philo *philo)
+{
+	print_msg(philo, IS_SLEEPING);
+	ft_usleep(philo->prog->input.time_to_sleep);
+}
+
 /* lock the forks
 ** update meal time -> restart time_to_die counter
 ** print the status and eat for estimated time

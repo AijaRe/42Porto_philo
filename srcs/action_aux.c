@@ -6,7 +6,7 @@
 /*   By: arepsa <arepsa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/20 10:11:28 by arepsa            #+#    #+#             */
-/*   Updated: 2024/01/20 10:41:38 by arepsa           ###   ########.fr       */
+/*   Updated: 2024/01/20 18:15:05 by arepsa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,10 +65,4 @@ void	lone_diner(t_philo	*philo)
 	print_msg(philo, HAS_TAKEN_A_FORK);
 	while (!dinner_finished(philo->prog))
 		usleep(100);
-}
-
-void	ft_sleep(t_philo *philo)
-{
-	print_msg(philo, IS_SLEEPING);
-	ft_usleep(philo->prog->input.time_to_sleep);
 }
