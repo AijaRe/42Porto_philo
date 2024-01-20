@@ -60,7 +60,6 @@ void	*ft_monitor(void *prog_data)
 	int		i;
 
 	prog = (t_prog *)prog_data;
-	
 	while (!get_all_threads_running(&prog->prog_mtx,
 			&prog->nbr_ready_threads, prog->input.nbr_philos))
 		;
@@ -79,6 +78,5 @@ void	*ft_monitor(void *prog_data)
 			i++;
 		}
 	}
-
 	return (NULL);
 }

@@ -6,15 +6,15 @@
 /*   By: arepsa <arepsa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/27 11:04:06 by arepsa            #+#    #+#             */
-/*   Updated: 2024/01/05 18:50:57 by arepsa           ###   ########.fr       */
+/*   Updated: 2024/01/20 10:43:16 by arepsa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
 
-int ft_strlen(char *str)
+int	ft_strlen(char *str)
 {
-    int i;
+	int	i;
 
 	i = 0;
 	while (str[i] != '\0')
@@ -22,27 +22,27 @@ int ft_strlen(char *str)
 	return (i);
 }
 
-int    ft_error(char *str)
+int	ft_error(char *str)
 {
-    write(2, str, ft_strlen(str));
-    return(1);
+	write (2, str, ft_strlen(str));
+	return (1);
 }
 
-bool    ft_isspace(char c)
+bool	ft_isspace(char c)
 {
-    return((c >= 9 && c <= 13) || c == 32);
+	return ((c >= 9 && c <= 13) || c == 32);
 }
+
 void	*safe_malloc(size_t bytes)
 {
 	void	*result;
-	
+
 	result = malloc(bytes);
 	if (!result)
 	{
-		return(NULL);
+		return (NULL);
 	}
 	return (result);
-		
 }
 
 /* atol only for positive nbr */
