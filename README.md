@@ -3,7 +3,7 @@
 ## Resources
 
 - [The Dining Philosophers Problem](https://www.javatpoint.com/os-dining-philosophers-problem)
-- [Code Vault Playlist](https://www.youtube.com/watch?v=d9s_d28yJq0&list=PLfqABt5AS4FmuQf70psXrsMLEDQXNkLq2)
+- [Code Vault Playlist on threads and mutexes](https://www.youtube.com/watch?v=d9s_d28yJq0&list=PLfqABt5AS4FmuQf70psXrsMLEDQXNkLq2)
 - [Philosophers Visualiser - your friendly debugger](https://nafuka11.github.io/philosophers-visualizer/)
 - [Jamshidbek's Materials and Video Tutorial](https://github.com/Jamshidbek2000/philosophers_42)
 - [Oceano on Threads](https://medium.com/@jalal92/lets-discuss-threads-grab-a-coffee-ad4d4ebf7181)
