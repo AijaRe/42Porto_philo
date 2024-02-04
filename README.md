@@ -49,6 +49,15 @@ Program finishes when all philos are full (if nbr of meals are present) or when 
 10. Write precise timestamp_in_ms
 11. Clean data on program finish.
 
+### Example of a full closed cycle
+![philo full cycle](pics/philo4-410-200-100-2.jpg)
+
+### Example of a tight timing with many philos
+![many philos](pics/philo-199-610-200-100.jpg)
+
+### Example of 1 philo (who still needs to be a thread...)
+![1 philo](pics/philo1-800-200-200.jpg)
+
 ## Norminette
 This project has to be written in accordance with the Norm, which is the coding standard of the school 42.
 
