@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: marvin <marvin@student.42.fr>              +#+  +:+       +#+         #
+#    By: arepsa <arepsa@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/27 11:06:34 by arepsa            #+#    #+#              #
-#    Updated: 2024/01/14 18:01:36 by marvin           ###   ########.fr        #
+#    Updated: 2024/01/20 18:16:17 by arepsa           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ RM = rm -rf
 
 # ------------- FLAGS ------------- #
 CFLAGS 	= -Wall -Wextra -Werror -g
-TH_FLAG = -pthread -fsanitize=thread
+TH_FLAG = -pthread #-fsanitize=thread
 MK_FLAG = --no-print-directory
 
 # -------------- PATHS -------------- #
@@ -36,8 +36,8 @@ OBJ_DIR		= objs
 
 # /------------- FILES ------------- #
 NAME 		= philo
-FILES 		= main utils init_check prog_init debug_prints action utils_mtx \
-				printer monitor clean time
+FILES 		= main utils init_check prog_init action action_aux \
+				printer monitor clean time utils_mtx debug_prints
 SRC 		= $(addprefix $(SRC_DIR)/, $(addsuffix .c, $(FILES)))
 OBJ 		= $(addprefix $(OBJ_DIR)/, $(addsuffix .o, $(FILES)))
 

@@ -10,11 +10,11 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../includes/philo.h"
+#include "../includes/philo.h"
 
 void	clean_all(t_prog *prog)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < prog->input.nbr_philos)
@@ -27,4 +27,4 @@ void	clean_all(t_prog *prog)
 	pthread_mutex_destroy(&prog->print_mtx);
 	free(prog->philos);
 	free(prog->forks);
-}	
+}

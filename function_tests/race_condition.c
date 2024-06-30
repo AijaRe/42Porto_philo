@@ -41,3 +41,5 @@ int main(void)
  printf("Total drinks served: %d\n", g_drinks_served);
  return (0);
 }
+
+//compile with -pthread -fsanitize=thread

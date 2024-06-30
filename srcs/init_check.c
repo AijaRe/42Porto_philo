@@ -6,7 +6,7 @@
 /*   By: arepsa <arepsa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/27 11:02:28 by arepsa            #+#    #+#             */
-/*   Updated: 2023/12/28 15:01:46 by arepsa           ###   ########.fr       */
+/*   Updated: 2024/01/20 10:42:36 by arepsa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static int	check_non_numeric(int argc, char **argv)
 			return (1);
 		while (argv[i][j] != '\0') 
 		{
-            while (ft_isspace(argv[i][j]))
+			while (ft_isspace(argv[i][j]))
 				j++;
 			if (argv[i][j] == '-' || argv[i][j] == '+')
 				j++;
@@ -46,9 +46,9 @@ static int	check_non_numeric(int argc, char **argv)
 	return (0);
 }
 
-static int  check_negatives(int argc, char **argv)
+static int	check_negatives(int argc, char **argv)
 {
-    int	i;
+	int	i;
 	int	j;
 
 	i = 1;
@@ -85,13 +85,13 @@ static int	out_of_max_range(int argc, char **argv)
 	return (0);
 }
 
-int check_init_errors(int argc, char **argv)
+int	check_init_errors(int argc, char **argv)
 {
-    if (check_non_numeric(argc, argv) == 1)
-        return(ft_error("Input is not numeric!\n"));
-    if (check_negatives(argc, argv) == 1)
-        return(ft_error("Input is negative!\n"));
-    if (out_of_max_range(argc, argv) == 1)
-        return(ft_error("Input bigger than MAX_INT!\n"));
-    return (0);
+	if (check_non_numeric(argc, argv) == 1)
+		return (ft_error("Input is not numeric!\n"));
+	if (check_negatives(argc, argv) == 1)
+		return (ft_error("Input is negative!\n"));
+	if (out_of_max_range(argc, argv) == 1)
+		return (ft_error("Input bigger than MAX_INT!\n"));
+	return (0);
 }

@@ -5,10 +5,16 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: arepsa <arepsa@student.42porto.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/26 14:33:27 by arepsa            #+#    #+#             */
-/*   Updated: 2024/06/30 18:11:07 by arepsa           ###   ########.fr       */
+/*   Created: Invalid date        by                   #+#    #+#             */
+/*   Updated: 2024/06/30 18:55:54 by arepsa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+
+
+
+
+
 
 #ifndef PHILO_H
 # define PHILO_H
@@ -27,99 +33,107 @@
 # define PINK   "\033[1;35m"
 # define BLUE   "\033[1;34m"
 
-typedef struct s_prog t_prog;
+typedef struct s_prog	t_prog;
+typedef pthread_mutex_t	t_mtx;
 
 typedef enum e_msg
 {
-    HAS_TAKEN_A_FORK,
-    IS_EATING,
-    IS_SLEEPING,
-    IS_THINKING,
-    DIED     
-}       t_msg;
+	HAS_TAKEN_A_FORK,
+	IS_EATING,
+	IS_SLEEPING,
+	IS_THINKING,
+	DIED
+}			t_msg;
 
 typedef struct s_input
 {
-    int nbr_philos;
-    int time_to_die;
-    int time_to_eat;
-    int time_to_sleep;
-    int nbr_meals;
-}               t_input;
+	int	nbr_philos;
+	int	time_to_die;
+	int	time_to_eat;
+	int	time_to_sleep;
+	int	nbr_meals;
+}		t_input;
 
 typedef struct s_fork
 {
-	pthread_mutex_t	fork_mtx;
-	int	fork_id;
+	t_mtx	fork_mtx;
+	int		fork_id;
 }				t_fork;
 
 typedef struct s_philo
 {
-	pthread_t   philo_th;
-	int			philo_id;
-	t_fork		*fork_1st;
-	t_fork		*fork_2nd;
-	long		last_meal_time;
-	int			meal_count;
-    bool        full;
-	pthread_mutex_t	philo_mtx;
-	t_prog		*prog;
+	pthread_t		philo_th;
+	int				philo_id;
+	t_fork			*fork_1st;
+	t_fork			*fork_2nd;
+	long			last_meal_time;
+	int				meal_count;
+	bool			full;
+	t_mtx			philo_mtx;
+	t_prog			*prog;
 }				t_philo;
 
 typedef struct s_prog
 {
-   t_input  input;
-   t_philo	*philos;
-   t_fork	*forks;
-   long		start_time;
-   bool		end_prog;
-   bool     all_philos_full;
-   bool		all_threads_ready;
-   int      nbr_ready_threads;
-   pthread_t    monitor_th;
-   pthread_mutex_t prog_mtx;
-   pthread_mutex_t print_mtx;
+	t_input		input;
+	t_philo		*philos;
+	t_fork		*forks;
+	long		start_time;
+	bool		end_prog;
+	bool		all_philos_full;
+	bool		all_threads_ready;
+	int			nbr_ready_threads;
+	pthread_t	monitor_th;
+	t_mtx		prog_mtx;
+	t_mtx		print_mtx;
 }				t_prog;
 
-int check_init_errors(int argc, char **argv);
+int		check_init_errors(int argc, char **argv);
 
 /* prog_init */
 long	get_time(void);
-void    prog_init(t_prog *prog);
+void	prog_init(t_prog *prog);
 
 /* action */
-void  *start_dinner(t_prog *prog);
+void	*start_dinner(t_prog *prog);
 bool	dinner_finished(t_prog *prog);
+
+/* action_aux */
+bool	dinner_finished(t_prog *prog);
+bool	all_philos_full(t_prog *prog);
+void	check_if_all_full(t_prog *prog);
+void	lone_diner(t_philo	*philo);
+void	ft_sleep(t_philo *philo);
 
 /* monitor */
 void	*ft_monitor(void *prog_data);
 
 /* printer */
-void    print_msg(t_philo *philo, t_msg msg);
+void	print_msg(t_philo *philo, t_msg msg);
 
 /* clean */
 void	clean_all(t_prog *prog);
 
 /* time */
 long	get_time(void);
-int     ft_usleep(long time_usec);
+int		ft_usleep(int time_usec);
+void	sync_threads(t_prog *prog);
 
 /* utils */
-int     ft_strlen(char *str);
-bool    ft_isspace(char c);
-int     ft_error(char *str);
+int		ft_strlen(char *str);
+bool	ft_isspace(char c);
+int		ft_error(char *str);
 long	ft_atol(char *str);
 void	*safe_malloc(t_prog *prog, size_t bytes);
 
 /* utils_mtx */
-bool    get_all_threads_ready(t_prog *prog);
-bool get_philo_is_full(t_philo *philo);
-bool get_all_philos_are_full(t_prog *prog);
-void    set_last_meal_time(t_philo *philo);
-void    increase_nbr_ready_threads(t_prog *prog);
+bool	get_all_threads_ready(t_prog *prog);
+bool	get_philo_is_full(t_philo *philo);
+bool	get_all_philos_are_full(t_prog *prog);
+void	set_last_meal_time(t_philo *philo);
+void	increase_nbr_ready_threads(t_prog *prog);
 
 /* print_stuff */
-void    print_s_input(t_input *input);
-void    print_philo(t_philo *philo);
-
-# endif
+void	print_s_input(t_input *input);
+void	print_philo(t_philo *philo);
+#endif
