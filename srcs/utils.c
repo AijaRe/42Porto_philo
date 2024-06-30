@@ -6,7 +6,7 @@
 /*   By: arepsa <arepsa@student.42porto.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/27 11:04:06 by arepsa            #+#    #+#             */
-/*   Updated: 2024/06/30 18:58:40 by arepsa           ###   ########.fr       */
+/*   Updated: 2024/06/30 19:05:09 by arepsa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,6 @@ bool	ft_isspace(char c)
 }
 
 void	*safe_malloc(t_prog *prog, size_t bytes)
-
-void	*safe_malloc(size_t bytes)
 {
 	void	*result;
 
@@ -44,7 +42,6 @@ void	*safe_malloc(size_t bytes)
 	{
 		clean_all(prog);
 		exit(EXIT_FAILURE);
-		return (NULL);
 	}
 	return (result);
 }

@@ -6,7 +6,7 @@
 /*   By: arepsa <arepsa@student.42porto.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/06/30 18:58:28 by arepsa           ###   ########.fr       */
+/*   Updated: 2024/06/30 19:05:35 by arepsa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,8 +84,8 @@ void	prog_init(t_prog *prog)
 	prog->nbr_ready_threads = 0;
 	pthread_mutex_init(&prog->prog_mtx, NULL);
 	pthread_mutex_init(&prog->print_mtx, NULL);
-	prog->philos = safe_malloc(prog->input.nbr_philos * sizeof(t_philo));
-	prog->forks = safe_malloc(prog->input.nbr_philos * sizeof(t_fork));
+	prog->philos = safe_malloc(prog, prog->input.nbr_philos * sizeof(t_philo));
+	prog->forks = safe_malloc(prog, prog->input.nbr_philos * sizeof(t_fork));
 	init_forks(prog);
 	init_philos(prog);
 }
