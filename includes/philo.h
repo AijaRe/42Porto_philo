@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: arepsa <arepsa@student.42porto.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/26 14:33:27 by arepsa            #+#    #+#             */
-/*   Updated: 2024/01/14 18:37:33 by marvin           ###   ########.fr       */
+/*   Updated: 2024/06/30 18:11:07 by arepsa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,7 @@ int     ft_strlen(char *str);
 bool    ft_isspace(char c);
 int     ft_error(char *str);
 long	ft_atol(char *str);
-void	*safe_malloc(size_t bytes);
+void	*safe_malloc(t_prog *prog, size_t bytes);
 
 /* utils_mtx */
 bool    get_all_threads_ready(t_prog *prog);

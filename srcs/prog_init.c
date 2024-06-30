@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prog_init.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: arepsa <arepsa@student.42porto.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 13:52:16 by arepsa            #+#    #+#             */
-/*   Updated: 2024/01/14 16:40:52 by marvin           ###   ########.fr       */
+/*   Updated: 2024/06/30 18:11:02 by arepsa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,8 +72,8 @@ void    prog_init(t_prog *prog)
     prog->nbr_ready_threads = 0;
     pthread_mutex_init(&prog->prog_mtx, NULL);
     pthread_mutex_init(&prog->print_mtx, NULL);
-    prog->philos = safe_malloc(prog->input.nbr_philos * sizeof(t_philo));
-    prog->forks = safe_malloc(prog->input.nbr_philos * sizeof(t_fork));
+    prog->philos = safe_malloc(prog, prog->input.nbr_philos * sizeof(t_philo));
+    prog->forks = safe_malloc(prog, prog->input.nbr_philos * sizeof(t_fork));
     init_forks(prog);
     init_philos(prog);
 }

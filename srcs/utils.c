@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arepsa <arepsa@student.42.fr>              +#+  +:+       +#+        */
+/*   By: arepsa <arepsa@student.42porto.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/27 11:04:06 by arepsa            #+#    #+#             */
-/*   Updated: 2024/01/05 18:50:57 by arepsa           ###   ########.fr       */
+/*   Updated: 2024/06/30 18:11:23 by arepsa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,16 @@ bool    ft_isspace(char c)
 {
     return((c >= 9 && c <= 13) || c == 32);
 }
-void	*safe_malloc(size_t bytes)
+
+void	*safe_malloc(t_prog *prog, size_t bytes)
 {
 	void	*result;
 	
 	result = malloc(bytes);
 	if (!result)
 	{
-		return(NULL);
+		clean_all(prog);
+		exit(EXIT_FAILURE);
 	}
 	return (result);
 		
