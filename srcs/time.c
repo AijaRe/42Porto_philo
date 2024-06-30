@@ -31,7 +31,7 @@ long	get_time(void)
 }
 
 // upgraded usleep
-int	ft_usleep(long time_usec)
+int	ft_usleep(int usec)
 {
 	struct timeval	start; 
 	struct timeval	current;
